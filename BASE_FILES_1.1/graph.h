@@ -140,10 +140,15 @@ class Vertex
 
         /// un exemple de donnée associée à l'arc, on peut en ajouter d'autres...
         double m_value;
-    
-        ///on associe un couleur a un sommet
+        ///
+        //POUR ALGO_KOSARAJU
+        //on associe un couleur a un sommet
         int m_color;
-
+        //on ajoute le bool de marquage
+        bool marker; 
+        //on ajoute l'ordre de passage
+        int time_of_passage;
+        ///
         /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
         std::shared_ptr<VertexInterface> m_interface = nullptr;
 
