@@ -264,3 +264,46 @@ void Graph::add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weig
 
 }
 
+
+void Graph::save_graph()
+{
+    std::string name_file;
+//    int choix;
+
+    /// REQUEST NAME FILE TO SAVE
+/*//
+//    if (al_show_native_message_box(screen, "Choix du fichier de sauvegarde","Souhaitez vous nommer votre fichier de sauvegarde ?",
+//     " Si oui, saisir dans la console. \n Si non, il sera sauvegardé sur le fichier ''auto_save'' "  )
+//        std::cin>> name_file;
+//        else name_file = "save";
+//
+//
+*/
+
+    std::cout<< "   Saisir le nom du fichier de sauvergarde que vous voulez donner"<<std::endl;
+    std::cin>> name_file;
+
+    name_file+= "_save.txt";
+
+    std::ofstream file_save( name_file.c_str(), std::ios::trunc );
+
+    file_save<< m_vertices.size() << std::endl<< m_edges.size()<<std::endl;
+    // 1st line file : order // 2nd line: number of edges
+
+    // insertion selon l'ordre des paramètres de la methode add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name, int pic_idx)
+    for ( int i = 0; i< m_vertices.size(); i++)
+    {
+        file_save<< i << " "<<  m_vertices[i].m_value << " " << m_vertices[i].m_interface->m_top_box.get_posx() <<
+         " "<< m_vertices[i].m_interface->m_top_box.get_posy() << " " << m_vertices[i].m_interface->m_img.get_pic_name() <<
+         " "<< m_vertices[i].m_interface->m_img.get_pic_idx() << std::endl;
+    }
+
+    // insertion selon l'ordre des paramètres de la methode add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weight)
+    for ( int i = 0; i< m_edges.size(); i++)
+    {
+        file_save<< i << " " << m_edges[i].m_from << " "<< m_edges[i].m_to << " "<< m_edges[i].m_weight<<std::endl;
+    }
+
+    std::cout<< "Sauvegarde du graphe effectuée !" <<std::endl;
+}
+
