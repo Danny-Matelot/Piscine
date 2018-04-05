@@ -1,0 +1,9 @@
+#ifndef LIBPROJET_H_INCLUDED
+#define LIBPROJET_H_INCLUDED
+
+
+#define LECRAN 1024
+#define HECRAN 768
+
+
+#endif // LIBPROJET_H_INCLUDED
