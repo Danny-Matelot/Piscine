@@ -162,7 +162,7 @@ class Vertex
         /// Les constructeurs sont à compléter selon vos besoin...
         /// Ici on ne donne qu'un seul constructeur qui peut utiliser une interface
         Vertex (double value=0, VertexInterface *interface=nullptr) :
-            m_value(value), m_interface(interface), m_color(0)  {  }
+            m_value(value), m_interface(interface), m_color(0), marker (false), time_of_passage(-1)  {  }
 
         /// Vertex étant géré par Graph ce sera la méthode update de graph qui appellera
         /// le pre_update et post_update de Vertex (pas directement la boucle de jeu)
