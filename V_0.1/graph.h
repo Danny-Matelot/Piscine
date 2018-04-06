@@ -76,7 +76,12 @@
 #include <string>
 #include <memory>
 
+#include <iostream>
+#include <fstream>
+
+
 #include "grman/grman.h"
+
 
 /***************************************************
                     VERTEX
@@ -308,6 +313,17 @@ class Graph
 
         /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
         void update();
+
+        /// Methodes de sauvegarde dans un fichier
+
+        void save_graph();
+        void load_graph();
+
+        /// Methodes d'édition de fichier
+
+        void del_vertex(int v_id);
+        void del_edge(int e_id);
+
 };
 
 

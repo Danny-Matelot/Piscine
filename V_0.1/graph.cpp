@@ -243,5 +243,106 @@ void Graph::add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weig
     EdgeInterface *ei = new EdgeInterface(m_vertices[id_vert1], m_vertices[id_vert2]);
     m_interface->m_main_box.add_child(ei->m_top_edge);
     m_edges[idx] = Edge(weight, ei);
+
+
+    m_edges[idx].m_from = id_vert1;
+    m_edges[idx].m_to = id_vert2;
 }
 
+void Graph::save_graph()
+{
+    std::string name_file;
+//    int choix;
+
+    /// REQUEST NAME FILE TO SAVE
+/*//
+//    if (al_show_native_message_box(screen, "Choix du fichier de sauvegarde","Souhaitez vous nommer votre fichier de sauvegarde ?",
+//     " Si oui, saisir dans la console. \n Si non, il sera sauvegardé sur le fichier ''auto_save'' "  )
+//        std::cin>> name_file;
+//        else name_file = "save";
+//
+//
+*/
+
+    std::cout<< "   Saisir le nom du fichier de sauvergarde que vous voulez donner"<<std::endl;
+    std::cin>> name_file;
+
+    std::ofstream file_save( name_file.c_str(), std::ios::trunc );
+
+    // 1st line file : order // 2nd line: number of edges
+    file_save<< m_vertices.size() << std::endl<< m_edges.size()<<std::endl<<
+      ""<< m_interface->m_top_box.get_posx() <<" " << m_interface->m_top_box.get_posy()<<" "<<
+      " "<< m_interface->m_top_box.get_dimx()<<" " << m_interface->m_top_box.get_dimy()<<std::endl;
+    // les dimensions pour le std::shared_ptr<GraphInterface> m_interface = nullptr;
+
+    // insertion selon l'ordre des paramètres de la methode add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name, int pic_idx)
+    for ( unsigned int i = 0; i< m_vertices.size(); i++)
+    {
+        file_save<< i << " "<<  m_vertices[i].m_value << " " << m_vertices[i].m_interface->m_top_box.get_posx() <<
+         " "<< m_vertices[i].m_interface->m_top_box.get_posy() << " " << m_vertices[i].m_interface->m_img.get_pic_name() <<
+         " "<< m_vertices[i].m_interface->m_img.get_pic_idx() << std::endl;
+    }
+
+    // insertion selon l'ordre des paramètres de la methode add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weight)
+    for ( unsigned int i = 0; i< m_edges.size(); i++)
+    {
+        file_save<< i << " " << m_edges[i].m_from << " "<< m_edges[i].m_to << " "<< m_edges[i].m_weight<<std::endl;
+    }
+
+    std::cout<< "Sauvegarde du graphe effectuée !" <<std::endl;
+}
+
+using namespace std;
+
+void Graph::load_graph()
+{
+    string name_file;
+
+    cout << "  A partir de quel fichier voulez vous charger votre graphe ? \n\t Entrer le nom du fichier et son extension : ";
+    cin>> name_file;
+
+    ifstream ld_file( name_file.c_str(), ios::in );
+
+
+    /// Traitement
+    if(!ld_file.is_open()){ cout << " ERROR: can't open the save file"<<endl; }
+    else
+    {
+
+
+        int ordre, nb_aretes;
+        int vid, vvalue, vx, vy,vpic_id,eid,es1,es2,ew;
+        string vpic_name;
+
+        int x,y,w,h;
+
+        ld_file>>ordre>>nb_aretes>>x>>y>>w>>h;
+
+        m_interface = std::make_shared<GraphInterface>(x, y, w, h);
+
+        for(int i = 0; i < ordre; i++)
+        {
+            ld_file>> vid>> vvalue>>vx>>vy>> vpic_name>>vpic_id;
+            add_interfaced_vertex(vid, vvalue, vx, vy, vpic_name.c_str(), vpic_id);
+
+        }
+        for(int i = 0 ; i < nb_aretes ; i++)
+        {
+            ld_file>> eid>> es1>>es2>>ew;
+            add_interfaced_edge(eid,es1,es2,ew);
+        }
+
+    }
+
+}
+
+void Graph::del_vertex(int v_id)
+{
+
+
+}
+
+void Graph::del_edge(int e_id)
+{
+
+}
