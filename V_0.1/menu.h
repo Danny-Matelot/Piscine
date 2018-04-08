@@ -5,6 +5,7 @@
 #include <stack>
 #include "grman/grman.h"
 #include "libprojet.h"
+#include "graph.h"
 
 /// BASE SUR LE CODE DE M. FERCOQ DANS L'EXEMPLE DES CLOWNS
 
@@ -16,7 +17,7 @@ class Menu
         /** Default destructor */
         virtual ~Menu();
 
-        void update();
+        void update(Graph& g, bool& principal);
 
     protected:
 

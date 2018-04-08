@@ -23,6 +23,8 @@ void Widget::update()
     update_draw();
 }
 
+
+
 /// Gestion des événements
 void Widget::update_interact()
 {
@@ -66,7 +68,7 @@ void Widget::update_pre_draw()
 
 
 /// Gestion des affichages
-void Widget::update_draw()
+void Widget::update_draw( )
 {
     create_frame_context();
 

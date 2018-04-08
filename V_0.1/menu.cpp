@@ -61,7 +61,7 @@ Menu::~Menu()
     //dtor
 }
 
-void Menu::update()
+void Menu::update(Graph& g, bool& principal)
 {
 
 
@@ -76,18 +76,27 @@ void Menu::update()
 
     if ( m_but_edit.clicked() )
     {
-        std::cout << "EDIT !" << std::endl;
+        principal =true;
+        std::cout << "EDIT ! "<< principal << std::endl;
+
+
     }
 
     /// Utilisation de l'autre bouton (méchant clown) pour enlever un clown
     if ( m_but_load.clicked() )
     {
         std::cout << "LOAD !" << std::endl;
+            Graph test;
+            g = test;
+            g.load_graph();
+        std::cout << "LOADED GRAPH !" << std::endl;
     }
 
     if ( m_but_save.clicked() )
     {
         std::cout << "SAVE !" << std::endl;
+            g.save_graph();
+        std::cout << "SAVED GRAPH !" << std::endl;
     }
 
 }

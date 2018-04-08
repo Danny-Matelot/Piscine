@@ -164,8 +164,8 @@ class Widget
 
 
         /// Gestion affichage et interaction
+//        void update();
         void update();
-
         void update_interact();
         void update_pre_draw();
         void update_draw();
@@ -192,6 +192,7 @@ class Widget
         Widget(const Widget&) = delete;
         Widget & operator=(const Widget&) = delete;
 
+        void non_affichage(){ destroy_frame_context(); }
 
     /// En principe non directement utiles dans les classes dérivées (aspects techniques)
     private:

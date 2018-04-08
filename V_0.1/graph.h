@@ -79,6 +79,7 @@
 #include <iostream>
 #include <fstream>
 
+#include <algorithm>
 
 #include "grman/grman.h"
 
@@ -138,9 +139,15 @@ class Vertex
 
     private :
         /// liste des indices des arcs arrivant au sommet : accès aux prédécesseurs
-        std::vector<int> m_in;
+        std::vector<int> m_ein;
 
         /// liste des indices des arcs partant du sommet : accès aux successeurs
+        std::vector<int> m_eout;
+
+        /// liste des indices des sommets arrivant au sommet : accès aux prédécesseurs
+        std::vector<int> m_in;
+
+        /// liste des indices des sommets partant du sommet : accès aux successeurs
         std::vector<int> m_out;
 
         /// un exemple de donnée associée à l'arc, on peut en ajouter d'autres...
@@ -148,6 +155,10 @@ class Vertex
 
         /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
         std::shared_ptr<VertexInterface> m_interface = nullptr;
+
+        /// booléen indiquant si le sommet est "supprimé" // si false, est affiché
+        bool vertex_deleted;
+
 
         // Docu shared_ptr : https://msdn.microsoft.com/fr-fr/library/hh279669.aspx
         // La ligne précédente est en gros équivalent à la ligne suivante :
@@ -159,7 +170,7 @@ class Vertex
         /// Les constructeurs sont à compléter selon vos besoin...
         /// Ici on ne donne qu'un seul constructeur qui peut utiliser une interface
         Vertex (double value=0, VertexInterface *interface=nullptr) :
-            m_value(value), m_interface(interface)  {  }
+            m_value(value), m_interface(interface), vertex_deleted(false)  {  }
 
         /// Vertex étant géré par Graph ce sera la méthode update de graph qui appellera
         /// le pre_update et post_update de Vertex (pas directement la boucle de jeu)
@@ -199,6 +210,12 @@ class EdgeInterface
         // Un label de visualisation du poids de l'arc
         grman::WidgetText m_label_weight;
 
+        // Un label indiquant l'index du sommet
+        grman::WidgetText m_label_idx;
+
+        // Une boite pour le label précédent
+        grman::WidgetText m_box_label_idx;
+
     public :
 
         // Le constructeur met en place les éléments de l'interface
@@ -226,6 +243,11 @@ class Edge
 
         /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
         std::shared_ptr<EdgeInterface> m_interface = nullptr;
+
+        /// booléen indiquant si l'arete est "supprimé" // si false, est affiché
+        bool edge_deleted;
+
+
 
 
     public:
@@ -268,6 +290,23 @@ class GraphInterface
         /// Dans cette boite seront ajoutés des boutons de contrôle etc...
         grman::WidgetBox m_tool_box;
 
+            grman::WidgetButton m_but_delvert;
+            grman::WidgetText   m_txt_delvert;
+
+            grman::WidgetButton m_but_addvert;
+            grman::WidgetText   m_txt_addvert;
+
+            grman::WidgetButton m_but_deledge;
+            grman::WidgetText   m_txt_deledge;
+
+            grman::WidgetButton m_but_addedge;
+            grman::WidgetText   m_txt_addedge;
+
+            grman::WidgetButton m_but_kosaraju;
+            grman::WidgetText   m_txt_kosaraju;
+
+            grman::WidgetButton m_but_konnexite;
+            grman::WidgetText   m_txt_konnexite;
 
         // A compléter éventuellement par des widgets de décoration ou
         // d'édition (boutons ajouter/enlever ...)
@@ -322,7 +361,14 @@ class Graph
         /// Methodes d'édition de fichier
 
         void del_vertex(int v_id);
+        void del_vertex_old(int v_id);
         void del_edge(int e_id);
+        void del_edge_old(int e_id);
+        void fill_edge_list(std::vector<int>& list_edge,int v_id);
+        void show_vertex_edges( int v_id);
+
+
+        void use_toolbox();
 
 };
 
