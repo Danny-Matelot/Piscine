@@ -607,7 +607,7 @@ void Graph::del_edge(int eidx)
         }
           
           
-          int intrem_var;
+         /* int intrem_var;
           int interm_var_2;
         for(int i;i<m_vertices[remed.m_from].m_in.size();i++)
         {
@@ -663,7 +663,7 @@ void Graph::del_edge(int eidx)
             }
           }
           
-        }
+        }*/
 
         /// FAit pour réorganiser la map et la runémérotant mais ça marche vraiment pas
 
