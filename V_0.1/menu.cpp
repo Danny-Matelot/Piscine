@@ -24,6 +24,11 @@ Menu::Menu()
         m_nom_menu.set_gravity_y(grman::GravityY::Up);
         m_nom_menu.draw_border();
         m_nom_menu.set_margin(17);
+
+        m_main_menu.add_child( m_loaded_file );
+        m_loaded_file.set_gravity_xy(grman::GravityX::Left,grman::GravityY::Up);
+        m_loaded_file.draw_border();
+        m_loaded_file.set_margin(17);
         //m_nom_menu.set_dim(0,0);
         //m_nom_menu.set_padding();
 
@@ -86,9 +91,19 @@ void Menu::update(Graph& g, bool& principal)
     if ( m_but_load.clicked() )
     {
         std::cout << "LOAD !" << std::endl;
+
+        std::string name_file;
+
+    std::cout << "  A partir de quel fichier voulez vous charger votre graphe ? \n\t Entrer le nom du fichier : ";
+    //std::cin>> name_file;
+    std::getline(std::cin, name_file);
+    name_file += ".txt";
+
+
             Graph test;
             g = test;
-            g.load_graph();
+            g.load_graph(name_file);
+            m_loaded_file.set_message("Loaded file:" + name_file);
         std::cout << "LOADED GRAPH !" << std::endl;
     }
 

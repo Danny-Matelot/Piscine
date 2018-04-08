@@ -31,6 +31,7 @@ class Menu
                     /// Infos sur le graphe actuel:
                 grman::WidgetText m_graphe_actuel; // Afficher en haut à droite pour indique qel graphe est chargé
                 grman::WidgetText m_nom_menu; // Afficher en haut milieu pour dire que c'dst le main menu
+                grman::WidgetText m_loaded_file;
 
                     ///Options du Menu
                 grman::WidgetText m_txt_load;       // Texte pour charger un graphe
