@@ -400,6 +400,11 @@ class Graph
 
         void use_toolbox();
 
+    ///K-connexite
+
+        void Non_oriented_DFS(std::stack<int>&DFS_S);
+        void K_connex_search();
+
 };
 
 
