@@ -4,7 +4,7 @@
                     VERTEX
 ****************************************************/
 
-/// Le constructeur met en place les éléments de l'interface
+/// Le constructeur met en place les Ã©lÃ©ments de l'interface
 VertexInterface::VertexInterface(int idx, int x, int y, std::string pic_name, int pic_idx)
 {
     // La boite englobante
@@ -12,9 +12,9 @@ VertexInterface::VertexInterface(int idx, int x, int y, std::string pic_name, in
     m_top_box.set_dim(130, 100);
     m_top_box.set_moveable();
 
-    // Le slider de réglage de valeur
+    // Le slider de rÃ©glage de valeur
     m_top_box.add_child( m_slider_value );
-    m_slider_value.set_range(0.0 , 1000.0); // Valeurs arbitraires, à adapter...
+    m_slider_value.set_range(0.0 , 1000.0); // Valeurs arbitraires, Ã  adapter...
     m_slider_value.set_dim(20,80);
     m_slider_value.set_gravity_xy(grman::GravityX::Left, grman::GravityY::Up);
 
@@ -42,24 +42,24 @@ VertexInterface::VertexInterface(int idx, int x, int y, std::string pic_name, in
 }
 
 
-/// Gestion du Vertex avant l'appel à l'interface
+/// Gestion du Vertex avant l'appel Ã  l'interface
 void Vertex::pre_update()
 {
     if (!m_interface)
         return;
     if( !vertex_deleted )
     {
-        /// Copier la valeur locale de la donnée m_value vers le slider associé
+        /// Copier la valeur locale de la donnÃ©e m_value vers le slider associÃ©
         m_interface->m_slider_value.set_value(m_value);
 
-        /// Copier la valeur locale de la donnée m_value vers le label sous le slider
+        /// Copier la valeur locale de la donnÃ©e m_value vers le label sous le slider
         m_interface->m_label_value.set_message( std::to_string( (int)m_value) );
     }
 
 }
 
 
-/// Gestion du Vertex après l'appel à l'interface
+/// Gestion du Vertex aprÃ¨s l'appel Ã  l'interface
 void Vertex::post_update()
 {
     if (!m_interface)
@@ -67,7 +67,7 @@ void Vertex::post_update()
 
     if( !vertex_deleted )
     {
-        /// Reprendre la valeur du slider dans la donnée m_value locale
+        /// Reprendre la valeur du slider dans la donnÃ©e m_value locale
         m_value = m_interface->m_slider_value.get_value();
     }
 }
@@ -78,7 +78,7 @@ void Vertex::post_update()
                     EDGE
 ****************************************************/
 
-/// Le constructeur met en place les éléments de l'interface
+/// Le constructeur met en place les Ã©lÃ©ments de l'interface
 EdgeInterface::EdgeInterface(Vertex& from, Vertex& to)
 {
     // Le WidgetEdge de l'interface de l'arc
@@ -91,14 +91,14 @@ EdgeInterface::EdgeInterface(Vertex& from, Vertex& to)
     m_top_edge.attach_to(to.m_interface->m_top_box);
     m_top_edge.reset_arrow_with_bullet();
 
-    // Une boite pour englober les widgets de réglage associés
+    // Une boite pour englober les widgets de rÃ©glage associÃ©s
     m_top_edge.add_child(m_box_edge);
     m_box_edge.set_dim(24,60);
     m_box_edge.set_bg_color(BLANCBLEU);
 
-    // Le slider de réglage de valeur
+    // Le slider de rÃ©glage de valeur
     m_box_edge.add_child( m_slider_weight );
-    m_slider_weight.set_range(0.0 , 100.0); // Valeurs arbitraires, à adapter...
+    m_slider_weight.set_range(0.0 , 100.0); // Valeurs arbitraires, Ã  adapter...
     m_slider_weight.set_dim(16,40);
     m_slider_weight.set_gravity_y(grman::GravityY::Up);
 
@@ -111,26 +111,26 @@ EdgeInterface::EdgeInterface(Vertex& from, Vertex& to)
 }
 
 
-/// Gestion du Edge avant l'appel à l'interface
+/// Gestion du Edge avant l'appel Ã  l'interface
 void Edge::pre_update()
 {
     if (!m_interface)
         return;
 
-    /// Copier la valeur locale de la donnée m_weight vers le slider associé
+    /// Copier la valeur locale de la donnÃ©e m_weight vers le slider associÃ©
     m_interface->m_slider_weight.set_value(m_weight);
 
-    /// Copier la valeur locale de la donnée m_weight vers le label sous le slider
+    /// Copier la valeur locale de la donnÃ©e m_weight vers le label sous le slider
     m_interface->m_label_weight.set_message( std::to_string( (int)m_weight ) );
 }
 
-/// Gestion du Edge après l'appel à l'interface
+/// Gestion du Edge aprÃ¨s l'appel Ã  l'interface
 void Edge::post_update()
 {
     if (!m_interface)
         return;
 
-    /// Reprendre la valeur du slider dans la donnée m_weight locale
+    /// Reprendre la valeur du slider dans la donnÃ©e m_weight locale
     m_weight = m_interface->m_slider_weight.get_value();
 }
 
@@ -140,8 +140,8 @@ void Edge::post_update()
                     GRAPH
 ****************************************************/
 
-/// Ici le constructeur se contente de préparer un cadre d'accueil des
-/// éléments qui seront ensuite ajoutés lors de la mise ne place du Graphe
+/// Ici le constructeur se contente de prÃ©parer un cadre d'accueil des
+/// Ã©lÃ©ments qui seront ensuite ajoutÃ©s lors de la mise ne place du Graphe
 GraphInterface::GraphInterface(int x, int y, int w, int h)
 {
     m_top_box.set_dim(1000,740);
@@ -225,18 +225,18 @@ GraphInterface::GraphInterface(int x, int y, int w, int h)
 
 
 
-/// Méthode spéciale qui construit un graphe arbitraire (démo)
-/// Cette méthode est à enlever et remplacer par un système
+/// MÃ©thode spÃ©ciale qui construit un graphe arbitraire (dÃ©mo)
+/// Cette mÃ©thode est Ã  enlever et remplacer par un systÃ¨me
 /// de chargement de fichiers par exemple.
-/// Bien sûr on ne veut pas que vos graphes soient construits
-/// "à la main" dans le code comme ça.
+/// Bien sÃ»r on ne veut pas que vos graphes soient construits
+/// "Ã  la main" dans le code comme Ã§a.
 void Graph::make_example()
 {
     m_interface = std::make_shared<GraphInterface>(50, 0, 750, 600);
-  /*  // La ligne précédente est en gros équivalente à :
+  /*  // La ligne prÃ©cÃ©dente est en gros Ã©quivalente Ã  :
     // m_interface = new GraphInterface(50, 0, 750, 600);
 
-//    /// Les sommets doivent être définis avant les arcs
+//    /// Les sommets doivent Ãªtre dÃ©finis avant les arcs
 //    // Ajouter le sommet d'indice 0 de valeur 30 en x=200 et y=100 avec l'image clown1.jpg etc...
 //    add_interfaced_vertex(0, 30.0, 200, 100, "clown1.jpg");
 //    add_interfaced_vertex(1, 60.0, 400, 100, "clown2.jpg");
@@ -247,7 +247,7 @@ void Graph::make_example()
 //    add_interfaced_vertex(6,  0.0, 300, 500, "bad_clowns_xx3xx.jpg", 1);
 //    add_interfaced_vertex(7,  0.0, 500, 500, "bad_clowns_xx3xx.jpg", 2);
 //
-//    /// Les arcs doivent être définis entre des sommets qui existent !
+//    /// Les arcs doivent Ãªtre dÃ©finis entre des sommets qui existent !
 //    // AJouter l'arc d'indice 0, allant du sommet 1 au sommet 2 de poids 50 etc...
 //    add_interfaced_edge(0, 1, 2, 50.0);
 //    add_interfaced_edge(1, 0, 1, 50.0);
@@ -261,7 +261,7 @@ void Graph::make_example()
 //    add_interfaced_edge(9, 3, 7, 80.0);*/
 }
 
-/// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
+/// La mÃ©thode update Ã  appeler dans la boucle de jeu pour les graphes avec interface
 void Graph::update()
 {
     if (!m_interface)
@@ -290,7 +290,7 @@ void Graph::update()
 
 }
 
-/// Aide à l'ajout de sommets interfacés
+/// Aide Ã  l'ajout de sommets interfacÃ©s
 void Graph::add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name, int pic_idx )
 {
     if ( m_vertices.find(idx)!=m_vertices.end() )
@@ -298,7 +298,7 @@ void Graph::add_interfaced_vertex(int idx, double value, int x, int y, std::stri
         std::cerr << "Error adding vertex at idx=" << idx << " already used..." << std::endl;
         throw "Error adding vertex";
     }
-    // Création d'une interface de sommet
+    // CrÃ©ation d'une interface de sommet
     VertexInterface *vi = new VertexInterface(idx, x, y, pic_name, pic_idx);
     // Ajout de la top box de l'interface de sommet
     m_interface->m_main_box.add_child(vi->m_top_box);
@@ -306,7 +306,7 @@ void Graph::add_interfaced_vertex(int idx, double value, int x, int y, std::stri
     m_vertices[idx] = Vertex(value, vi);
 }
 
-/// Aide à l'ajout d'arcs interfacés
+/// Aide Ã  l'ajout d'arcs interfacÃ©s
 void Graph::add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weight)
 {
 
@@ -339,7 +339,7 @@ void Graph::add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weig
     m_edges[idx].m_interface->m_box_label_idx.add_child( m_edges[idx].m_interface->m_label_idx );
     m_edges[idx].m_interface->m_label_idx.set_message( std::to_string(idx) );
 
-//    // Le slider de réglage de valeur
+//    // Le slider de rÃ©glage de valeur
 //    m_edges[idx].m_interface->m_top_edge.add_child( m_edges[idx].m_interface->m_slider_weight );
 //    m_edges[idx].m_interface->m_slider_weight.set_range(0.0,100.0);
 //    m_edges[idx].m_interface->m_slider_weight.set_dim(16,40);
@@ -352,7 +352,7 @@ void Graph::add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weig
 
 
 
-//    m_slider_weight.set_range(0.0 , 100.0); // Valeurs arbitraires, à adapter...
+//    m_slider_weight.set_range(0.0 , 100.0); // Valeurs arbitraires, Ã  adapter...
 //    m_slider_weight.set_dim(16,40);
 //
 //    m_edges[idx].m_interface->m_top_edge.add_child( m_edges[idx].m_interface->m_label_weight );
@@ -390,7 +390,7 @@ void Graph::save_graph()
       " "<< m_interface->m_top_box.get_dimx()<<" " << m_interface->m_top_box.get_dimy()<<std::endl;
     // les dimensions pour le std::shared_ptr<GraphInterface> m_interface = nullptr;
 
-    // insertion selon l'ordre des paramètres de la methode add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name, int pic_idx)
+    // insertion selon l'ordre des paramÃ¨tres de la methode add_interfaced_vertex(int idx, double value, int x, int y, std::string pic_name, int pic_idx)
     for ( unsigned int i = 0; i< m_vertices.size(); i++)
     {
         file_save<< i << " "<<  m_vertices[i].m_value << " " << m_vertices[i].m_interface->m_top_box.get_posx() <<
@@ -398,13 +398,13 @@ void Graph::save_graph()
          " "<< m_vertices[i].m_interface->m_img.get_pic_idx() << std::endl;
     }
 
-    // insertion selon l'ordre des paramètres de la methode add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weight)
+    // insertion selon l'ordre des paramÃ¨tres de la methode add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weight)
     for ( auto& i : m_edges )//unsigned int i = 0; i< m_edges.size(); i++)
     {
         file_save<< i.first<<" "<< i.second.m_from << " "<< i.second.m_to << " "<< i.second.m_weight<<std::endl;
     }
 
-    std::cout<< "Sauvegarde du graphe effectuée !" <<std::endl;
+    std::cout<< "Sauvegarde du graphe effectuÃ©e !" <<std::endl;
 }
 
 using namespace std;
@@ -449,7 +449,7 @@ void Graph::load_graph(string name_file)
 
 }
 
-/// Basé sur le code fourni sur campus
+/// BasÃ© sur le code fourni sur campus
 
 
 void Graph::del_edge(int eidx)
@@ -461,12 +461,12 @@ void Graph::del_edge(int eidx)
 
     {
         {
-                 /// référence vers le Edge à enlever
+                 /// rÃ©fÃ©rence vers le Edge Ã  enlever
 
         std::cout <<  std::endl;
 
 
-         /// test : on a bien des éléments interfacés
+         /// test : on a bien des Ã©lÃ©ments interfacÃ©s
 
         if (m_interface && remed.m_interface)
         {
@@ -474,7 +474,7 @@ void Graph::del_edge(int eidx)
         }
 
         m_edges.erase( eidx );
-        /// On supprime dans les sommets la présences de l'entrée et/ou sortie des ids edge
+        /// On supprime dans les sommets la prÃ©sences de l'entrÃ©e et/ou sortie des ids edge
 
         for( map< int, Vertex>::iterator x = m_vertices.begin() ; x != m_vertices.end() ; ++x )
         {
@@ -483,10 +483,10 @@ void Graph::del_edge(int eidx)
         }
 
         /// POOUR DES QUESTIONS DE COMPATIBILITES
-            /// on a aussi les sommets qui ont des vecteurs contenant l'id des sommets qui sont reliés à eux
-            /// une fois l'arc supprimé, ont doit aussi effacer cette liaison
-            /// c'est basiquement (simplement) la même chose qu'au dessus, et  même si on aurait pu accèder à ça grâce à l'intermédiaire
-            /// de m_in[i].m_from , le travail en parallèle fait qu'il est bien plus simple d'écrire ces lignes de codes
+            /// on a aussi les sommets qui ont des vecteurs contenant l'id des sommets qui sont reliÃ©s Ã  eux
+            /// une fois l'arc supprimÃ©, ont doit aussi effacer cette liaison
+            /// c'est basiquement (simplement) la mÃªme chose qu'au dessus, et  mÃªme si on aurait pu accÃ¨der Ã  Ã§a grÃ¢ce Ã  l'intermÃ©diaire
+            /// de m_in[i].m_from , le travail en parallÃ¨le fait qu'il est bien plus simple d'Ã©crire ces lignes de codes
 
 
 
@@ -506,7 +506,7 @@ void Graph::del_edge(int eidx)
 
 
 
-        /// FAit pour réorganiser la map et la runémérotant mais ça marche vraiment pas
+        /// FAit pour rÃ©organiser la map et la runÃ©mÃ©rotant mais Ã§a marche vraiment pas
 
 
 
@@ -521,11 +521,11 @@ void Graph::del_edge(int eidx)
 
 
 
-/// Adapté du code fourni sur les edges
+/// AdaptÃ© du code fourni sur les edges
 void Graph::del_vertex(int v_id)
 {
 
-    /// référence vers le Edge à enlever
+    /// rÃ©fÃ©rence vers le Edge Ã  enlever
 
     std::cout <<std::endl<< " HELLO, on s'en va supprimer le sommet : "<< v_id << std::endl<<std::endl;
 
@@ -567,17 +567,17 @@ void Graph::del_vertex(int v_id)
     Vertex &delver=m_vertices.at(v_id);
     /// si les interfaces sont communes
     if( m_interface && delver.m_interface ) m_interface->m_main_box.remove_child( delver.m_interface->m_top_box );
-    /// on retire la parenté entre l'interface du vertex et du graphe
+    /// on retire la parentÃ© entre l'interface du vertex et du graphe
 
 
 
-    m_vertices.erase( v_id ); // on enlève le sommet de la liste
+    m_vertices.erase( v_id ); // on enlÃ¨ve le sommet de la liste
 
-            /// FAit pour réorganiser la map et la runémérotant mais ça marche vraiment pas
+            /// FAit pour rÃ©organiser la map et la runÃ©mÃ©rotant mais Ã§a marche vraiment pas
 
             std::cout <<std::endl<< "   Sommet : "<< v_id <<" supprime"<< std::endl<<std::endl;
 }
-/// fonction qui sert àvoir si l'une des fonctions de la toolbox est demandée
+/// fonction qui sert Ã voir si l'une des fonctions de la toolbox est demandÃ©e
 void Graph::use_toolbox()
 {
     // LES DEL
@@ -614,11 +614,11 @@ void Graph::use_toolbox()
         string pic_name;
         cout<< " Quel est la valeur de ce sommet ?\n Entrer son poids entre 0 et 100 :\t";
         cin>> value;cout<<endl;
-        cout<< " Quel les positions de ce sommet ?\n Entrer sa coordonnées X comprises entre 0 et 753:\t";
+        cout<< " Quel les positions de ce sommet ?\n Entrer sa coordonnÃ©es X comprises entre 0 et 753:\t";
         cin>> x;cout<<endl;
-        cout<< " Entrer sa coordonnées y comprises entre 0 et 615:\t";
+        cout<< " Entrer sa coordonnÃ©es y comprises entre 0 et 615:\t";
         cin>> y;cout<<endl;
-        cout<< " Quel est le nom (et extension) de l'image à charger dans le fichier pics ?\t";
+        cout<< " Quel est le nom (et extension) de l'image Ã  charger dans le fichier pics ?\t";
         cin>> pic_name;cout<<endl;
         cout<< " L'image a-t-elle un id particulier? ?\n Si non, entrer 0:\t";
         cin>> pic_idx;cout<<endl;
@@ -705,7 +705,7 @@ void Graph::dyna_graph()
                 if(y.second.m_from == x.first){ p+= y.second.m_weight*0.0001*m_vertices[ y.second.m_to].m_value; }
             }
         if( sustain && k == 0 ){ k = 0.01; }else{ if( !sustain && k==0 ){ k+=100; } }
-    // on gere le cas oùle sommet n'a pas d'arete entrante
+    // on gere le cas oÃ¹le sommet n'a pas d'arete entrante
         buffer = x.second.m_value + 0.05* x.second.m_value*( 1 - x.second.m_value/k ) - p;
 
         new_values[ x.first ] = buffer;
@@ -745,7 +745,7 @@ void Graph::show_vertex_edges(int id)
 void Graph::fill_edge_list(vector<int>& edge_list_removal,int v_id)
 {
 
-    edge_list_removal.clear(); // sinon il va avoir les anciens numéros d'aretes
+    edge_list_removal.clear(); // sinon il va avoir les anciens numÃ©ros d'aretes
     if( !m_vertices[v_id].m_eout.empty() )
     {
      for(vector<int>::iterator i = m_vertices[v_id].m_eout.begin() ; i != m_vertices[v_id].m_eout.end() ; ++i )
@@ -963,3 +963,336 @@ void Graph:: Search_of_CFC_Kosaraju()
     }
 
 }
+void Graph:: Non_oriented_DFS(std::stack<int>&DFS_S)
+ {
+     int interm_var;
+     bool neighboor_check;
+
+     neighboor_check=false;
+     for(auto &it :m_vertices[DFS_S.top()].m_out)//on cherche les voisins non marquees
+     {
+
+         if(m_vertices[it].marker==false && m_vertices[it].active==true)//si on en trouve on le prends pour ajouter dans la pile (du coup ca sera le dernier voisin non marque de la liste qui sera ajoute)
+         {
+            interm_var=it;
+            neighboor_check=true;
+
+         }
+     }
+     for(auto &it :m_vertices[DFS_S.top()].m_in)//on cherche les voisins non marquees
+     {
+
+         if(m_vertices[it].marker==false && m_vertices[it].active==true)//si on en trouve on le prends pour ajouter dans la pile (du coup ca sera le dernier voisin non marque de la liste qui sera ajoute)
+         {
+            interm_var=it;
+            neighboor_check=true;
+
+         }
+     }
+
+     if(neighboor_check)//si on a trouve un voisin non marque on l'ajoute dans la pile de DFS et on le marque
+     {
+        DFS_S.push(interm_var);
+        m_vertices[interm_var].marker=true;
+     }
+     else
+     {
+       DFS_S.pop();
+     }
+ }
+
+
+ void Graph:: K_connex_search()
+ {
+     int i;
+     int Sommet_de_depart(-1);
+     int Current_k_degree(1);
+     int Final_k_Degree(-1);
+     bool check (false);
+     bool k_con_el_check(false);
+     bool K_conn_found (false);
+     std::stack <int> DFS_S;
+     std::stack <int> Verticles_in_order_of_passage;
+     std::vector <std::vector <int>> Breaking_graph_verticles_container;
+     std::vector <int> Current_breaking_verticles;
+     check=false;
+     ///on netoi les valeurs, avant d'executer l'algo
+     for(auto& it: m_vertices)
+        {
+           it.second.marker=false;
+           it.second.active=true;
+           it.second.tried=false;
+        }
+
+
+
+
+     K_conn_found=false;
+
+     while(K_conn_found!=true)
+     {
+
+
+         K_conn_found==false;
+
+
+
+
+
+     //on verifie si on a essaye toutes les sommets a certain order, si oui on augment l'ordre
+         check=true;
+         for(auto& it: m_vertices)
+         {
+             if (it.second.tried==false)
+             {
+                check=false;
+             }
+         }
+         if(check==true && Final_k_Degree<0)
+         {
+            Current_k_degree++;
+            for(auto& it: m_vertices)
+            {
+                it.second.tried=false;
+            }
+         }
+
+         //on rempli le V_O_P si il est vide
+         if (Verticles_in_order_of_passage.size()==0)
+         {
+             for(auto& it: m_vertices)
+              {
+                 if (it.second.tried!=true)
+                 {
+                   Verticles_in_order_of_passage.push(it.first);
+                 }
+              }
+              for(i=0;i<Current_k_degree;i++)
+              {
+                  Current_breaking_verticles.push_back(Verticles_in_order_of_passage.top());
+                  m_vertices[Verticles_in_order_of_passage.top()].tried=true;
+                  m_vertices[Verticles_in_order_of_passage.top()].active=false;
+                  Verticles_in_order_of_passage.pop();
+              }
+
+         }
+
+
+
+         while (Verticles_in_order_of_passage.size()!=0)
+         {
+
+            if(Current_breaking_verticles.size()==Current_k_degree)
+            {
+
+
+               for(auto& it: m_vertices)
+               {
+                   if(it.second.marker==false && it.second.active==true)
+                   Sommet_de_depart=it.first;
+
+               }
+               DFS_S.push(Sommet_de_depart);
+
+               m_vertices[Sommet_de_depart].marker=true;
+
+               while (DFS_S.size()!=0)
+               {
+               this->Non_oriented_DFS(DFS_S);
+               }
+
+               //si le dfs a ete effectue mais on n'as pas trpuve les sommets non marquees, alors on a pas trouve l'ordre de k-connexite
+               for(auto &it: m_vertices)
+               {
+                  if(it.second.marker==false && it.second.active==true)
+                  {
+                     K_conn_found=true;
+                     Final_k_Degree=Current_k_degree;
+                  }
+               }
+                for(auto &it: m_vertices)
+               {
+               it.second.marker=false;
+               }
+               if(K_conn_found)
+               {
+                  while(Verticles_in_order_of_passage.size()!=0)
+                  {
+                        Verticles_in_order_of_passage.pop();
+                  }
+               }
+               else
+               {
+                m_vertices[Current_breaking_verticles[Current_breaking_verticles.size()-1]].active=true;
+                Current_breaking_verticles.pop_back();
+                Current_breaking_verticles.push_back(Verticles_in_order_of_passage.top());
+                m_vertices[Verticles_in_order_of_passage.top()].active=false;
+                if(Current_k_degree==1)
+                {
+                    m_vertices[Verticles_in_order_of_passage.top()].tried=true;
+                }
+                Verticles_in_order_of_passage.pop();
+
+               }
+
+            }
+
+         }
+
+     }
+
+
+
+
+  for(auto& it: m_vertices)
+  {
+      it.second.marker=false;
+      it.second.active=true;
+      it.second.tried=false;
+  }
+ while (Current_breaking_verticles.size()!=0)
+ {
+        Current_breaking_verticles.pop_back();
+ }
+
+
+   k_con_el_check=false;
+   while (k_con_el_check!=true)
+   {
+       k_con_el_check=true;
+       //on regarde si on a verifie toutes les sommets
+       for(auto& it: m_vertices)
+         {
+
+             if (it.second.tried==false)
+             {
+                k_con_el_check=false;
+
+             }
+         }
+
+         //on rempli le V_O_P si il est vide
+        if(k_con_el_check==false)
+        if (Verticles_in_order_of_passage.size()==0)
+         {
+
+             for(auto& it: m_vertices)
+              {
+
+                 if (it.second.tried!=true)
+                 {
+                   Verticles_in_order_of_passage.push(it.first);
+                 }
+              }
+              for(i=0;i<Final_k_Degree;i++)
+              {
+
+                  Current_breaking_verticles.push_back(Verticles_in_order_of_passage.top());
+                  m_vertices[Verticles_in_order_of_passage.top()].tried=true;
+                  m_vertices[Verticles_in_order_of_passage.top()].active=false;
+
+                  Verticles_in_order_of_passage.pop();
+              }
+
+
+         }
+
+         while (Verticles_in_order_of_passage.size()>1)
+         {
+            if(Current_breaking_verticles.size()==Final_k_Degree)
+            {
+               for(auto& it: m_vertices)
+               {
+                   if(it.second.marker==false && it.second.active==true)
+                   Sommet_de_depart=it.first;
+
+
+               }
+
+               DFS_S.push(Sommet_de_depart);
+
+               m_vertices[Sommet_de_depart].marker=true;
+
+               while (DFS_S.size()!=0)
+               {
+                     this->Non_oriented_DFS(DFS_S);
+               }
+
+               //si le dfs a ete effectue mais on n'as pas trpuve les sommets non marquees, alors on a pas trouve l'ordre de k-connexite
+               check=false;
+               for(auto &it: m_vertices)
+               {
+                  if(it.second.marker==false && it.second.active==true)
+                  {
+                    check=true;
+                  }
+               }
+               if(check)
+               {
+                  Breaking_graph_verticles_container.push_back(Current_breaking_verticles);
+               }
+               for(auto &it: m_vertices)
+               {
+                  it.second.marker=false;
+               }
+
+            m_vertices[Current_breaking_verticles[Current_breaking_verticles.size()-1]].active=true;
+            Current_breaking_verticles.pop_back();
+            Current_breaking_verticles.push_back(Verticles_in_order_of_passage.top());
+            m_vertices[Verticles_in_order_of_passage.top()].active=false;
+            if(Current_k_degree==1)
+            {
+                m_vertices[Verticles_in_order_of_passage.top()].tried=true;
+            }
+            Verticles_in_order_of_passage.pop();
+
+            }
+
+
+
+         }
+
+         if(Verticles_in_order_of_passage.size()==1)
+         {
+
+            m_vertices[Current_breaking_verticles[Current_breaking_verticles.size()-1]].active=true;
+            Current_breaking_verticles.pop_back();
+            Current_breaking_verticles.push_back(Verticles_in_order_of_passage.top());
+            m_vertices[Verticles_in_order_of_passage.top()].active=false;
+            if(Current_k_degree==1)
+            {
+                m_vertices[Verticles_in_order_of_passage.top()].tried=true;
+            }
+            Verticles_in_order_of_passage.pop();
+         }
+
+
+
+
+   }
+
+std::cout<<"This Graph is of "<< Final_k_Degree<<" - connectivity"<<std::endl;
+std::cout<<"Vertex groups that we have to delete are: "<<std::endl;
+
+
+
+for (auto &it : Breaking_graph_verticles_container)
+{
+std::cout<<"Group: "<<std::endl;
+for (auto & et : it )
+{
+std:: cout<<et<<std::endl;
+}
+}
+
+ for(auto& it: m_vertices)
+  {
+      it.second.marker=false;
+      it.second.active=true;
+      it.second.tried=false;
+  }
+
+ }
+
+
+
