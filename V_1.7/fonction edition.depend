@@ -1,0 +1,273 @@
+# depslib dependency file v1.0
+1523192557 source:d:\code\[ 000 ] piscine\v_0.3\graph.cpp
+	"graph.h"
+
+1523193570 d:\code\[ 000 ] piscine\v_0.3\graph.h
+	<vector>
+	<map>
+	<string>
+	<memory>
+	<iostream>
+	<fstream>
+	<algorithm>
+	"grman/grman.h"
+
+1522945328 d:\code\[ 000 ] piscine\v_0.3\grman\grman.h
+	<allegro.h>
+	<string>
+	"grman_couleurs.h"
+	"coords.h"
+	"widget.h"
+
+1509222372 d:\code\[ 000 ] piscine\v_0.3\grman\grman_couleurs.h
+
+1522575424 d:\code\[ 000 ] piscine\v_0.3\grman\coords.h
+	<cmath>
+
+1523026523 d:\code\[ 000 ] piscine\v_0.3\grman\widget.h
+	"grman.h"
+	<iostream>
+	<string>
+	<vector>
+	<algorithm>
+	<allegro.h>
+
+1522575069 source:d:\code\[ 000 ] piscine\v_0.3\grman\coords.cpp
+	"coords.h"
+
+1522928033 source:d:\code\[ 000 ] piscine\v_0.3\grman\grman.cpp
+	<cmath>
+	<unordered_map>
+	<unordered_set>
+	<utility>
+	<string>
+	<iostream>
+	<regex>
+	"grman.h"
+	<allegro.h>
+	<png.h>
+	<loadpng.h>
+	<jpgalleg.h>
+
+1523026555 source:d:\code\[ 000 ] piscine\v_0.3\grman\widget.cpp
+	"widget.h"
+
+1523191523 source:d:\code\[ 000 ] piscine\v_0.3\main.cpp
+	"grman/grman.h"
+	<iostream>
+	"graph.h"
+	"menu.h"
+	"test.h"
+	<string>
+	<winalleg.h>
+
+1523186748 d:\code\[ 000 ] piscine\v_0.3\menu.h
+	<iostream>
+	<stack>
+	"grman/grman.h"
+	"libprojet.h"
+	"graph.h"
+
+1523016171 d:\code\[ 000 ] piscine\v_0.3\libprojet.h
+	"menu.h"
+	"grman/grman.h"
+
+1522597763 d:\code\[ 000 ] piscine\v_0.3\test.h
+	"grman/grman.h"
+	<iostream>
+	<stack>
+
+1523187262 source:d:\code\[ 000 ] piscine\v_0.3\menu.cpp
+	"menu.h"
+
+1522627465 source:d:\code\[ 000 ] piscine\v_0.3\test.cpp
+	"test.h"
+
+1522937524 source:d:\code\[ 000 ] piscine\v_0.3\menu_functions.cpp
+	"menu_functions.h"
+
+1522938140 d:\code\[ 000 ] piscine\v_0.3\menu_functions.h
+	"libprojet.h"
+
+1523210487 source:d:\code\[ 000 ] piscine\v_1.5\graph.cpp
+	"graph.h"
+
+1523202001 d:\code\[ 000 ] piscine\v_1.5\graph.h
+	<vector>
+	<map>
+	<string>
+	<memory>
+	<iostream>
+	<fstream>
+	<stack>
+	<algorithm>
+	"grman/grman.h"
+
+1523162302 d:\code\[ 000 ] piscine\v_1.5\grman\grman.h
+	<allegro.h>
+	<string>
+	"grman_couleurs.h"
+	"coords.h"
+	"widget.h"
+
+1523162302 d:\code\[ 000 ] piscine\v_1.5\grman\grman_couleurs.h
+
+1523162302 d:\code\[ 000 ] piscine\v_1.5\grman\coords.h
+	<cmath>
+
+1523162302 d:\code\[ 000 ] piscine\v_1.5\grman\widget.h
+	"grman.h"
+	<iostream>
+	<string>
+	<vector>
+	<algorithm>
+	<allegro.h>
+
+1523162302 source:d:\code\[ 000 ] piscine\v_1.5\grman\coords.cpp
+	"coords.h"
+
+1523162302 source:d:\code\[ 000 ] piscine\v_1.5\grman\grman.cpp
+	<cmath>
+	<unordered_map>
+	<unordered_set>
+	<utility>
+	<string>
+	<iostream>
+	<regex>
+	"grman.h"
+	<allegro.h>
+	<png.h>
+	<loadpng.h>
+	<jpgalleg.h>
+
+1523162302 source:d:\code\[ 000 ] piscine\v_1.5\grman\widget.cpp
+	"widget.h"
+
+1523209541 source:d:\code\[ 000 ] piscine\v_1.5\main.cpp
+	"grman/grman.h"
+	<iostream>
+	"graph.h"
+	"menu.h"
+	"test.h"
+	<string>
+	<winalleg.h>
+
+1523201751 d:\code\[ 000 ] piscine\v_1.5\menu.h
+	<iostream>
+	<stack>
+	"grman/grman.h"
+	"libprojet.h"
+	"graph.h"
+
+1523162302 d:\code\[ 000 ] piscine\v_1.5\libprojet.h
+	"menu.h"
+	"grman/grman.h"
+
+1523162302 d:\code\[ 000 ] piscine\v_1.5\test.h
+	"grman/grman.h"
+	<iostream>
+	<stack>
+
+1523206549 source:d:\code\[ 000 ] piscine\v_1.5\menu.cpp
+	"menu.h"
+
+1523162302 source:d:\code\[ 000 ] piscine\v_1.5\menu_functions.cpp
+	"menu_functions.h"
+
+1523162302 d:\code\[ 000 ] piscine\v_1.5\menu_functions.h
+	"libprojet.h"
+
+1523162302 source:d:\code\[ 000 ] piscine\v_1.5\test.cpp
+	"test.h"
+
+1523225942 source:d:\code\[ 000 ] piscine\v_1.6\graph.cpp
+	"graph.h"
+
+1523225758 d:\code\[ 000 ] piscine\v_1.6\graph.h
+	<vector>
+	<map>
+	<string>
+	<memory>
+	<iostream>
+	<fstream>
+	<stack>
+	<algorithm>
+	"grman/grman.h"
+
+1523162302 d:\code\[ 000 ] piscine\v_1.6\grman\grman.h
+	<allegro.h>
+	<string>
+	"grman_couleurs.h"
+	"coords.h"
+	"widget.h"
+
+1523162302 d:\code\[ 000 ] piscine\v_1.6\grman\grman_couleurs.h
+
+1523162302 d:\code\[ 000 ] piscine\v_1.6\grman\coords.h
+	<cmath>
+
+1523162302 d:\code\[ 000 ] piscine\v_1.6\grman\widget.h
+	"grman.h"
+	<iostream>
+	<string>
+	<vector>
+	<algorithm>
+	<allegro.h>
+
+1523162302 source:d:\code\[ 000 ] piscine\v_1.6\grman\coords.cpp
+	"coords.h"
+
+1523222861 source:d:\code\[ 000 ] piscine\v_1.6\grman\grman.cpp
+	<cmath>
+	<unordered_map>
+	<unordered_set>
+	<utility>
+	<string>
+	<iostream>
+	<regex>
+	"grman.h"
+	<allegro.h>
+	<png.h>
+	<loadpng.h>
+	<jpgalleg.h>
+	<winalleg.h>
+
+1523162302 source:d:\code\[ 000 ] piscine\v_1.6\grman\widget.cpp
+	"widget.h"
+
+1523222870 source:d:\code\[ 000 ] piscine\v_1.6\main.cpp
+	"grman/grman.h"
+	<iostream>
+	"graph.h"
+	"menu.h"
+	"test.h"
+	<string>
+
+1523201751 d:\code\[ 000 ] piscine\v_1.6\menu.h
+	<iostream>
+	<stack>
+	"grman/grman.h"
+	"libprojet.h"
+	"graph.h"
+
+1523162302 d:\code\[ 000 ] piscine\v_1.6\libprojet.h
+	"menu.h"
+	"grman/grman.h"
+
+1523162302 d:\code\[ 000 ] piscine\v_1.6\test.h
+	"grman/grman.h"
+	<iostream>
+	<stack>
+
+1523210865 source:d:\code\[ 000 ] piscine\v_1.6\menu.cpp
+	"menu.h"
+
+1523162302 source:d:\code\[ 000 ] piscine\v_1.6\menu_functions.cpp
+	"menu_functions.h"
+
+1523162302 d:\code\[ 000 ] piscine\v_1.6\menu_functions.h
+	"libprojet.h"
+
+1523162302 source:d:\code\[ 000 ] piscine\v_1.6\test.cpp
+	"test.h"
+
