@@ -72,6 +72,7 @@
 ***********************************************************************************************/
 
 #include <vector>
+#include <stack>
 #include <map>
 #include <string>
 #include <memory>
@@ -140,15 +141,12 @@ class Vertex
 
         /// un exemple de donnée associée à l'arc, on peut en ajouter d'autres...
         double m_value;
-        ///
-        //POUR ALGO_KOSARAJU
-        //on associe un couleur a un sommet
+
+        ///on associe un couleur et un markeur a un sommet
         int m_color;
-        //on ajoute le bool de marquage
-        bool marker; 
-        //on ajoute l'ordre de passage
-        int time_of_passage;
-        ///
+
+        bool marker;
+
         /// le POINTEUR sur l'interface associée, nullptr -> pas d'interface
         std::shared_ptr<VertexInterface> m_interface = nullptr;
 
@@ -162,7 +160,7 @@ class Vertex
         /// Les constructeurs sont à compléter selon vos besoin...
         /// Ici on ne donne qu'un seul constructeur qui peut utiliser une interface
         Vertex (double value=0, VertexInterface *interface=nullptr) :
-            m_value(value), m_interface(interface), m_color(0), marker (false), time_of_passage(-1)  {  }
+            m_value(value), m_interface(interface), m_color(0), marker(false)  {  }
 
         /// Vertex étant géré par Graph ce sera la méthode update de graph qui appellera
         /// le pre_update et post_update de Vertex (pas directement la boucle de jeu)
@@ -316,6 +314,13 @@ class Graph
 
         /// La méthode update à appeler dans la boucle de jeu pour les graphes avec interface
         void update();
+
+        ///CFF
+        //pour appliquer l'algorithme de kosaraju, on a besoin de faire 2 fois le dfs(sur le graph et apres sur son transpose)
+        void DFS(std::stack <int> &DFS_S, std::stack <int> & V_o_p,int &S_d_d);
+        void Inversed_DFS(std::stack <int> &DFS_S, std::stack <int> & V_o_p, int &color, int &S_d_d);
+        void Search_of_CFC_Kosaraju();
+
 };
 
 
