@@ -606,7 +606,7 @@ void Graph::del_edge(int eidx)
             x->second.m_out.erase( remove( x->second.m_out.begin() , x->second.m_out.end() , remed.m_from  ), x->second.m_out.end() );
         }
           
-          /*
+          
           int intrem_var;
           int interm_var_2;
         for(int i;i<m_vertices[remed.m_from].m_in.size();i++)
@@ -621,7 +621,49 @@ void Graph::del_edge(int eidx)
             }
           }
           
-        }*/
+        }
+          
+          for(int i;i<m_vertices[remed.m_from].m_out.size();i++)
+        {
+          interm_var=(m_vertices[remed.m_from].m_out)[i];
+          for (int j;j<m_vertices[interm_var].m_in.size();j++)
+          {
+            interm_var_2=(m_vertices[interm_var].m_in)[j];
+            if (interm_var_2==remed.m_from)
+            {
+              m_vertices[interm_var].m_in.erase(m_vertices[interm_var].m_in.begin()+j-1);
+            }
+          }
+          
+        }
+          
+          for(int i;i<m_vertices[remed.m_to].m_in.size();i++)
+        {
+          interm_var=(m_vertices[remed.m_to].m_in)[i];
+          for (int j;j<m_vertices[interm_var].m_out.size();j++)
+          {
+            interm_var_2=(m_vertices[interm_var].m_out)[j];
+            if (interm_var_2==remed.m_to)
+            {
+              m_vertices[interm_var].m_out.erase(m_vertices[interm_var].m_out.begin()+j-1);
+            }
+          }
+          
+        }
+          
+          for(int i;i<m_vertices[remed.m_to].m_out.size();i++)
+        {
+          interm_var=(m_vertices[remed.m_to].m_out)[i];
+          for (int j;j<m_vertices[interm_var].m_in.size();j++)
+          {
+            interm_var_2=(m_vertices[interm_var].m_in)[j];
+            if (interm_var_2==remed.m_to)
+            {
+              m_vertices[interm_var].m_in.erase(m_vertices[interm_var].m_in.begin()+j-1);
+            }
+          }
+          
+        }
 
         /// FAit pour réorganiser la map et la runémérotant mais ça marche vraiment pas
 
