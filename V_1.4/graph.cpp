@@ -605,7 +605,23 @@ void Graph::del_edge(int eidx)
             x->second.m_in.erase( remove( x->second.m_in.begin() , x->second.m_in.end() , remed.m_to ), x->second.m_in.end() );
             x->second.m_out.erase( remove( x->second.m_out.begin() , x->second.m_out.end() , remed.m_from  ), x->second.m_out.end() );
         }
-
+          
+          /*
+          int intrem_var;
+          int interm_var_2;
+        for(int i;i<m_vertices[remed.m_from].m_in.size();i++)
+        {
+          interm_var=(m_vertices[remed.m_from].m_in)[i];
+          for (int j;j<m_vertices[interm_var].m_out.size();j++)
+          {
+            interm_var_2=(m_vertices[interm_var].m_out)[j];
+            if (interm_var_2==remed.m_from)
+            {
+              m_vertices[interm_var].m_out.erase(m_vertices[interm_var].m_out.begin()+j-1);
+            }
+          }
+          
+        }*/
 
         /// FAit pour réorganiser la map et la runémérotant mais ça marche vraiment pas
 
