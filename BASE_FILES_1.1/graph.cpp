@@ -372,6 +372,12 @@ void Graph:: Search_of_CFC_Kosaraju()
     std::stack <int> Verticles_in_order_of_passage;//pile qui contiendra les sommets dans l'ordre de passage specifique(des qu'on a plus de voisins a visiter, sommet est ajoute dans cette pile)
     bool check;//variable pour verifier si on a marque toutes les sommets
 
+  ///Avant 'appliquer l'algo on reset l'appartenance a un certain composant connexe de chaque sommet a 0 et le marquage des sommets a 0
+     for(auto &it : m_vertices)
+       {
+          it.second.m_color=0;
+          it.second.marker=false;
+       }
 
     check=false;
     do
