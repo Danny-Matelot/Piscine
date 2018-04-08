@@ -1,0 +1,16 @@
+13
+0
+19 1  1000 740
+0 100 5 5		 whale.jpg 0
+1 100 600 500	 shark.jpg 0
+2 100 5 288 	dolphin.png 0
+3 100 404 311	 fish.jpg 0
+4 100 85 332 	turtle.jpg 0
+5 100 3 611 	rare_fish.jpg 0
+6 100 222 599 	octopus.jpg 0
+7 100 382 615	 fisherman.jpg 0
+8 135 100 200 	kind_shark.png 0
+9 500 135 1 	plancton.png 0
+10 100 650 600 	orca.png 0
+11 100 1 60		coral.jpg 0
+12 100 300 4	penguin.jpg 0
