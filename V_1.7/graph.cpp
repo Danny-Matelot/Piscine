@@ -970,7 +970,7 @@ void Graph:: Non_oriented_DFS(std::stack<int>&DFS_S)
  {
      int interm_var;
      bool neighboor_check;
-
+     //Le DFS pour verifier la connexite commence 
      neighboor_check=false;
      for(auto &it :m_vertices[DFS_S.top()].m_out)//on cherche les voisins non marquees
      {
@@ -1090,7 +1090,7 @@ void Graph:: Non_oriented_DFS(std::stack<int>&DFS_S)
          }
 
 
-
+        //tant qu'on n'as pas vide notrte pile pour verifier les sommets pour la rupture de connexite 
          while (Verticles_in_order_of_passage.size()!=0)
          {
 
@@ -1098,42 +1098,42 @@ void Graph:: Non_oriented_DFS(std::stack<int>&DFS_S)
             {
 
 
-               for(auto& it: m_vertices)
+               for(auto& it: m_vertices)//on cherche un sommet qu'on n'as pas encore verifie pour etre sommet de rupture, qui est active(on ne l'as pas virtuelement supprime de graphique) et qu'on n'as pas encore passe avec DFS
                {
                    if(it.second.marker==false && it.second.active==true)
                    Sommet_de_depart=it.first;
 
-               }
+               }//on le met dans notre pile de DFS
                DFS_S.push(Sommet_de_depart);
 
-               m_vertices[Sommet_de_depart].marker=true;
+               m_vertices[Sommet_de_depart].marker=true;//on marque ce sommet comme tant passe par le DFS
 
-               while (DFS_S.size()!=0)
+               while (DFS_S.size()!=0)//On commence le DFS et on le fait tant qu'on ne parcoutrs pas l'element connexe de graphe
                {
                this->Non_oriented_DFS(DFS_S);
                }
 
-               //si le dfs a ete effectue mais on n'as pas trpuve les sommets non marquees, alors on a pas trouve l'ordre de k-connexite
+               //si le dfs a ete effectue mais on n'as pas trpuve les sommets non marquees, alors on n'a pas trouve l'ordre de k-connexite
                for(auto &it: m_vertices)
                {
-                  if(it.second.marker==false && it.second.active==true)
+                  if(it.second.marker==false && it.second.active==true)//si on trouve un sommet non marque par le DFS alors qu'il etait actif, on a l'ordre de connexité de notre graphe 
                   {
                      K_conn_found=true;
                      Final_k_Degree=Current_k_degree;
                   }
                }
-                for(auto &it: m_vertices)
+                for(auto &it: m_vertices)//on remet le marquage de DFS a false
                {
                it.second.marker=false;
                }
-               if(K_conn_found)
+               if(K_conn_found)//SI on a trouve l'ordre de connexite de graph on vide le pile de sommets pour sortir de boucle
                {
                   while(Verticles_in_order_of_passage.size()!=0)
                   {
                         Verticles_in_order_of_passage.pop();
                   }
                }
-               else
+               else//si non on netoi le vecteur qui possiblement contiendra le k-plet pour le reremplir ensuite
                {
                 m_vertices[Current_breaking_verticles[Current_breaking_verticles.size()-1]].active=true;
                 Current_breaking_verticles.pop_back();
@@ -1156,23 +1156,23 @@ void Graph:: Non_oriented_DFS(std::stack<int>&DFS_S)
 
 
 
-  for(auto& it: m_vertices)
+  for(auto& it: m_vertices)//On remet toutes les markeurs dans leur etat initial
   {
       it.second.marker=false;
       it.second.active=true;
       it.second.tried=false;
   }
- while (Current_breaking_verticles.size()!=0)
+ while (Current_breaking_verticles.size()!=0)//on netoit notre vecteur de k-plets
  {
         Current_breaking_verticles.pop_back();
  }
 
 
-   k_con_el_check=false;
+   k_con_el_check=false;//on commence a chercher toutes les k-plets pouvant couper la connexite de notre graphe a degree qu'on a eja trouve
    while (k_con_el_check!=true)
    {
        k_con_el_check=true;
-       //on regarde si on a verifie toutes les sommets
+       //on regarde si on a verifie toutes les sommets et si non on continue
        for(auto& it: m_vertices)
          {
 
@@ -1183,7 +1183,7 @@ void Graph:: Non_oriented_DFS(std::stack<int>&DFS_S)
              }
          }
 
-         //on rempli le V_O_P si il est vide
+         //on rempli notre pile de sommets a verifier si il est vide
         if(k_con_el_check==false)
         if (Verticles_in_order_of_passage.size()==0)
          {
@@ -1196,7 +1196,7 @@ void Graph:: Non_oriented_DFS(std::stack<int>&DFS_S)
                    Verticles_in_order_of_passage.push(it.first);
                  }
               }
-              for(i=0;i<Final_k_Degree;i++)
+              for(i=0;i<Final_k_Degree;i++)//on rempli notre vecteur de k-plets 
               {
 
                   Current_breaking_verticles.push_back(Verticles_in_order_of_passage.top());
@@ -1208,7 +1208,7 @@ void Graph:: Non_oriented_DFS(std::stack<int>&DFS_S)
 
 
          }
-
+         //tant que notre pile de sommets a verifier n'est pas vide on effectue la meme procudure que avant sauf quelaue changement
          while (Verticles_in_order_of_passage.size()>1)
          {
             if(Current_breaking_verticles.size()==Final_k_Degree)
@@ -1230,7 +1230,7 @@ void Graph:: Non_oriented_DFS(std::stack<int>&DFS_S)
                      this->Non_oriented_DFS(DFS_S);
                }
 
-               //si le dfs a ete effectue mais on n'as pas trpuve les sommets non marquees, alors on a pas trouve l'ordre de k-connexite
+               //si on a reussi a trouver un sommet non marque par le DFS alors qu'il est actif, on ajoute notre vecteur de k-plet ans le vecteur de toutes les k-pleut coupant la connexite de graph
                check=false;
                for(auto &it: m_vertices)
                {
@@ -1247,7 +1247,7 @@ void Graph:: Non_oriented_DFS(std::stack<int>&DFS_S)
                {
                   it.second.marker=false;
                }
-
+            //on netoit notre vecteur de k-plets
             m_vertices[Current_breaking_verticles[Current_breaking_verticles.size()-1]].active=true;
             Current_breaking_verticles.pop_back();
             Current_breaking_verticles.push_back(Verticles_in_order_of_passage.top());
@@ -1282,7 +1282,7 @@ void Graph:: Non_oriented_DFS(std::stack<int>&DFS_S)
 
 
    }
-
+///on affcihe les resultats
 std::cout<<"This Graph is of "<< Final_k_Degree<<" - connectivity"<<std::endl;
 std::cout<<"Vertex groups that we have to delete are: "<<std::endl;
 
