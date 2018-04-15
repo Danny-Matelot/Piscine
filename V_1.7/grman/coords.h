@@ -2,7 +2,7 @@
 #define COORDS_H
 
 #include <cmath>
-
+// Des coordonÃ©es x y pour le graphe
 struct Coords
 {
         double x;
@@ -61,7 +61,7 @@ struct Coords
         Coords rotate_90() { return Coords(y, -x);  }
 
 };
-
+// Le cadre qui contient la position xy et wh
 struct Frame
 {
         Coords pos;
@@ -76,7 +76,7 @@ struct Frame
         Frame(double x_, double y_, double w_, double h_)
             : pos(x_, y_), dim(w_, h_) {}
 
-        // Renvoie les coordonnées (dans le repère de la position de Frame) de l'intersection
+        // Renvoie les coordonnÃ©es (dans le repÃ¨re de la position de Frame) de l'intersection
         // entre la demi-droite centre Frame -> vecteur directeur vec et le cadre de la Frame
         Coords intersect(Coords vec);
 
