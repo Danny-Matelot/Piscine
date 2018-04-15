@@ -371,12 +371,12 @@ void Graph::add_interfaced_edge(int idx, int id_vert1, int id_vert2, double weig
     m_vertices[id_vert2].m_in.push_back(id_vert1);
 
 }
-
+ /// REQUEST NAME FILE TO SAVE
 void Graph::save_graph()
 {
     std::string name_file;
 
-    /// REQUEST NAME FILE TO SAVE
+
 
     std::cout<< "   Saisir le nom du fichier de sauvergarde que vous voulez donner"<<std::endl;
     std::cin>> name_file;
@@ -408,7 +408,7 @@ void Graph::save_graph()
 }
 
 using namespace std;
-
+/// load a graph by giving the name file
 void Graph::load_graph(string name_file)
 {
     fstream ld_file( name_file.c_str(), ios::in );
@@ -450,7 +450,7 @@ void Graph::load_graph(string name_file)
 }
 
 /// Basé sur le code fourni sur campus
-
+/// Supprime l'arete et ses entrées d'id dans les maps et vertex
 
 void Graph::del_edge(int eidx)
 {
@@ -522,6 +522,7 @@ void Graph::del_edge(int eidx)
 
 
 /// Adapté du code fourni sur les edges
+/// supprime d'abord les edges et ensuite le sommet et ses entrées
 void Graph::del_vertex(int v_id)
 {
 
@@ -689,7 +690,7 @@ void Graph::use_toolbox()
 }
 
 
-
+/// va rendre l'éco sys dynamique
 void Graph::dyna_graph()
 {
     map<int, double> new_values;
@@ -723,7 +724,7 @@ void Graph::dyna_graph()
     rest(500);
 
 }
-
+/// montre les edges d'un sommets
 void Graph::show_vertex_edges(int id)
 {
       std::cout <<std::endl<< " Sommet "<< id;
@@ -742,7 +743,7 @@ void Graph::show_vertex_edges(int id)
         cout<< std::endl<<std::endl;
 
 }
-
+// unsused
 void Graph::fill_edge_list(vector<int>& edge_list_removal,int v_id)
 {
 
@@ -758,7 +759,7 @@ void Graph::fill_edge_list(vector<int>& edge_list_removal,int v_id)
         {            edge_list_removal.push_back(*i);        }
     }
 }
-
+/// Depth First Search 
 void Graph:: DFS(std::stack <int> &DFS_S, std::stack <int> &V_o_p, int &S_d_d)
 {
     int interm_var(-1);//pour recuperer le numero de sommet qu'on va ajouter (ou pas) dans les piles
@@ -808,6 +809,7 @@ void Graph:: DFS(std::stack <int> &DFS_S, std::stack <int> &V_o_p, int &S_d_d)
        }
     }
 }
+/// Inversed Depth First Search 
 void Graph:: Inversed_DFS(std::stack <int> &DFS_S, std::stack <int> & V_o_p, int &color, int &S_d_d)
 {
     int interm_var(-1);
@@ -858,6 +860,7 @@ void Graph:: Inversed_DFS(std::stack <int> &DFS_S, std::stack <int> & V_o_p, int
     }
 }
 ///Kosaraju algorithm est inspire par cette video https://www.youtube.com/watch?v=5wFyZJ8yH9Q&t=324s
+//sertt à trouvé les différentes composantes
 void Graph:: Search_of_CFC_Kosaraju()
 {
     int color(0);//variable qui indiquera l'appartenance d'un sommet a un composant fortement connexe concrete
@@ -965,7 +968,7 @@ void Graph:: Search_of_CFC_Kosaraju()
     }
 
 }
-
+/// DFS pour vérifier la connexite grace à une recherche non orientée
 void Graph:: Non_oriented_DFS(std::stack<int>&DFS_S)
  {
      int interm_var;
