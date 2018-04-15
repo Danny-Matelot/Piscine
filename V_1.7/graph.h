@@ -337,7 +337,7 @@ class GraphInterface
         GraphInterface(int x, int y, int w, int h);
 };
 
-
+/// Classe qui gère tout l'aspect "referentiel" du graphe chargé
 class Graph
 {
     private :
