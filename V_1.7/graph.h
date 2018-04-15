@@ -88,6 +88,7 @@
 /***************************************************
                     VERTEX
 ****************************************************/
+
 /// Gere l'aspect graphique du sommet : id, position, cadre ect...
 class VertexInterface
 {
@@ -190,6 +191,7 @@ class Vertex
 /***************************************************
                     EDGE
 ****************************************************/
+
 /// Gere l'aspect graphique de l'arete : id, position, cadre ect...
 class EdgeInterface
 {
@@ -229,7 +231,7 @@ class EdgeInterface
         EdgeInterface(Vertex& from, Vertex& to);
 };
 
-// Arete: indice to/from poids
+/// Arete: indice to/from poids
 class Edge
 {
     // Les (methodes des) classes amies pourront accéder
@@ -278,7 +280,8 @@ class Edge
 /***************************************************
                     GRAPH
 ****************************************************/
-//gere tout l'aspect graphique du graphe : son cadre sa taille ect
+
+/// gere tout l'aspect graphique du graphe : son cadre sa taille ect
 class GraphInterface
 {
     friend class Graph;
