@@ -3,7 +3,7 @@
 
 namespace grman
 {
-
+//crÃ©e cadre autour de ce qui est demandÃ©
 void rect_around(BITMAP *bmp, int color, int thickness=1, int receding=0)
 {
     for (int i=0+receding; i<thickness+receding; ++i)
@@ -15,7 +15,7 @@ void rect_around(BITMAP *bmp, int color, int thickness=1, int receding=0)
                 WIDGET BASE CLASS
 ****************************************************/
 
-
+// procÃ©dure d'appel de sous fonction
 void Widget::update()
 {
     update_interact();
@@ -25,13 +25,13 @@ void Widget::update()
 
 
 
-/// Gestion des événements
+/// Gestion des Ã©vÃ©nements
 void Widget::update_interact()
 {
     create_frame_context();
 
     /// Propagation de l'update aux elements enfants
-    /// On interagit en 1er avec les éléments ajoutés en dernier
+    /// On interagit en 1er avec les Ã©lÃ©ments ajoutÃ©s en dernier
     for (auto it=m_children.rbegin(); it!=m_children.rend(); ++it)
         (*it)->update_interact();
 
@@ -53,8 +53,8 @@ void Widget::update_interact()
     destroy_frame_context();
 }
 
-/// Gestion des affichages, 1ère passe pour fixer les cadres
-/// (Nécessaire pour les liens : affichés au fond donc en 1er mais s'appuyant sur les positions des autres qui sont affichés après)
+/// Gestion des affichages, 1Ã¨re passe pour fixer les cadres
+/// (NÃ©cessaire pour les liens : affichÃ©s au fond donc en 1er mais s'appuyant sur les positions des autres qui sont affichÃ©s aprÃ¨s)
 void Widget::update_pre_draw()
 {
     create_frame_context();
@@ -78,7 +78,7 @@ void Widget::update_draw( )
     draw();
 
     /// Propagation de l'update aux elements enfants
-    /// On affiche en dernier (devant les autres) les éléments ajoutés en dernier
+    /// On affiche en dernier (devant les autres) les Ã©lÃ©ments ajoutÃ©s en dernier
     for (auto &e : m_children)
         e->update_draw();
 
@@ -88,10 +88,10 @@ void Widget::update_draw( )
     destroy_frame_context();
 }
 
-
+// crÃ©e un cadre
 void Widget::create_frame_context()
 {
-    /// Calculer absolute frame à partir de relative et absolute parent ( si parent, sinon page_frame )
+    /// Calculer absolute frame Ã  partir de relative et absolute parent ( si parent, sinon page_frame )
     const Frame &abspar = m_parent ? m_parent->m_abs_frame : page_frame;
 
     m_abs_frame.pos.x = abspar.pos.x + m_frame.pos.x;
@@ -99,7 +99,7 @@ void Widget::create_frame_context()
 
     m_abs_frame.dim = m_frame.dim;
 
-    // Petits soucis de plantages avec les sub_bitmaps hors écran...
+    // Petits soucis de plantages avec les sub_bitmaps hors Ã©cran...
     int x = std::max(m_abs_frame.pos.x, 0.);
     int y = std::max(m_abs_frame.pos.y, 0.);
     int w = m_abs_frame.dim.x+std::min(m_abs_frame.pos.x, 0.);
@@ -109,10 +109,10 @@ void Widget::create_frame_context()
     int inside = m_border + m_padding;
     m_view = create_sub_bitmap(m_view_wb, inside, inside, w-2*inside, h-2*inside);
 
-    // Malheureusement ceci ne marche pas ... (à creuser)
+    // Malheureusement ceci ne marche pas ... (Ã  creuser)
     //set_clip_rect(m_view, std::max(-x, 0), std::max(-y, 0), w-1, h-1);
 }
-
+// dÃ©truit un cadre
 void Widget::destroy_frame_context()
 {
     if (m_view)
@@ -124,13 +124,13 @@ void Widget::destroy_frame_context()
     m_view_wb = nullptr;
 
 }
-
+// check if mouse over trhe widget
 bool Widget::is_mouse_over()
 {
     return     mouse_x>=m_abs_frame.pos.x && mouse_x<=m_abs_frame.pos.x+m_abs_frame.dim.x
                &&  mouse_y>=m_abs_frame.pos.y && mouse_y<=m_abs_frame.pos.y+m_abs_frame.dim.y;
 }
-
+// change frame
 void Widget::reframe()
 {
     int pardimx = m_parent ? m_parent->get_dimx() : page_frame.dim.x;
@@ -150,7 +150,7 @@ void Widget::reframe()
     else if (m_gravity_y==GravityY::Center)
         reset_posy( (pardimy - m_frame.dim.y)/2. );
 }
-
+// dessine bordure du cadre 
 void Widget::draw_border()
 {
     rect_around(m_view_wb, get_border_color(), m_border);
@@ -160,7 +160,7 @@ void Widget::draw_border()
                         TEXT
 ****************************************************/
 
-/// Extrêmement rudimentaire : à compléter !
+/// ExtrÃªmement rudimentaire : Ã  complÃ©ter !
 void WidgetText::draw(  )
 {
    // BITMAP* m_view_copy = create_bitmap( m_view->w*2, m_view->h*2 );
@@ -173,7 +173,7 @@ void WidgetText::draw(  )
         for (int i=0, y=0; i<(int)m_message.length(); ++i, y+=text_height(m_font))
             textprintf_ex(m_view, font, 0, y, m_color, -1, "%c", m_message[i]);
 }
-
+// met le message dans le widget texte
 void WidgetText::set_message(std::string message)
 {
     m_message = message;
@@ -189,7 +189,7 @@ void WidgetText::set_message(std::string message)
 /***************************************************
                     CHECKBOX
 ****************************************************/
-
+//dessine la widget
 void WidgetCheckBox::draw()
 {
     if (m_value)
@@ -204,7 +204,7 @@ void WidgetCheckBox::draw()
     }
 
 }
-
+//change la valeur si clique change valeur de la widget
 void WidgetCheckBox::interact_focus()
 {
     if ( mouse_click )
@@ -217,7 +217,7 @@ void WidgetCheckBox::interact_focus()
 /***************************************************
                     BUTTON
 ****************************************************/
-
+// si click then the widget is activated
 void WidgetButton::interact_focus()
 {
     if ( mouse_click )
@@ -229,7 +229,7 @@ void WidgetButton::interact_focus()
 /***************************************************
                     VSLIDER
 ****************************************************/
-
+//dessine le slider
 void WidgetVSlider::draw()
 {
     int hhandle = get_hhandle();
@@ -243,7 +243,7 @@ void WidgetVSlider::draw()
 
     thick_line(m_view, 0, ys, m_view->w-1, ys, hhandle, m_handle_color );
 }
-
+// interragir avec le widget et changer val
 void WidgetVSlider::interact_focus()
 {
     if ( mouse_b )
@@ -254,7 +254,7 @@ void WidgetVSlider::interact_focus()
         limit_to_range();
     }
 }
-
+// augmenter ou baisser la valeur
 void WidgetVSlider::interact_over()
 {
     if ( key[KEY_UP] )
@@ -275,7 +275,7 @@ void WidgetVSlider::interact_over()
 /***************************************************
                     IMAGE
 ****************************************************/
-
+//change cadre
 void WidgetImage::reframe()
 {
     if (m_pic_name=="")
@@ -287,7 +287,7 @@ void WidgetImage::reframe()
 
     set_dim( pic->w/get_picture_nb(m_pic_name), pic->h );
 }
-
+//dessine le widget
 void WidgetImage::draw()
 {
     if (m_animate)
@@ -307,7 +307,7 @@ void WidgetImage::draw()
 /***************************************************
                     BOX
 ****************************************************/
-
+//interagir w/ box 
 void WidgetBox::interact_focus()
 {
     if (mouse_click)
@@ -346,7 +346,7 @@ void WidgetBox::interact_focus()
 /***************************************************
                     EDGE
 ****************************************************/
-
+//dessine
 void WidgetEdge::draw()
 {
     if ( !(m_attach[0] && m_attach[1] ) )
@@ -357,26 +357,26 @@ void WidgetEdge::draw()
         m_attach[1]->get_center_abs_pos()
     };
 
-    // Vecteur de centre à centre
+    // Vecteur de centre Ã  centre
     Coords vec_dir = p[1] - p[0];
 
-    // Détermination des intersections avec les frames des 2 widgets liés
+    // DÃ©termination des intersections avec les frames des 2 widgets liÃ©s
     p[0] = m_attach[0]->get_abs_frame().intersect(vec_dir);
     p[1] = m_attach[1]->get_abs_frame().intersect(-vec_dir);
 
-    // Dessin du lien cadre à cadre
+    // Dessin du lien cadre Ã  cadre
     thick_line(page, p[0].x, p[0].y, p[1].x, p[1].y, m_thickness, m_color);
 
-    // Calcul du nouveau vecteur cadre à cadre
+    // Calcul du nouveau vecteur cadre Ã  cadre
     vec_dir = p[1] - p[0];
 
-    // Point d'ancrage pour les éventuels enfants ( Widgets attachés à l'arête )
+    // Point d'ancrage pour les Ã©ventuels enfants ( Widgets attachÃ©s Ã  l'arÃªte )
     Coords anchor = p[0] + vec_dir * m_children_position - vec_dir.normalize().rotate_90()*m_children_lateral;
     set_pos( anchor - get_parent_abs_frame().pos );
 
 
-    /// La suite concerne les éléments de décorations, flèches/extrémités
-    /// Pour chaque élément de décoration du lien...
+    /// La suite concerne les Ã©lÃ©ments de dÃ©corations, flÃ¨ches/extrÃ©mitÃ©s
+    /// Pour chaque Ã©lÃ©ment de dÃ©coration du lien...
     for (const auto& itm : m_items)
     {
         Coords head = p[0] + vec_dir * itm.m_position;
@@ -385,7 +385,7 @@ void WidgetEdge::draw()
         if (itm.m_type == ArrowItemType::Bullet)
             circlefill(page, head.x, head.y, itm.m_size/3, m_color);
 
-        /// Cas pointe de flèche ou triangle
+        /// Cas pointe de flÃ¨che ou triangle
         else
         {
             Coords U = vec_dir.normalize()*itm.m_size;
@@ -395,7 +395,7 @@ void WidgetEdge::draw()
             Coords ap1 = arrow_p - V;
             Coords ap2 = arrow_p + V;
 
-            /// Pointe de flèche
+            /// Pointe de flÃ¨che
             if (itm.m_type == ArrowItemType::Arrow)
             {
                 thick_line(page, head.x, head.y, ap1.x, ap1.y, m_thickness, m_color);
