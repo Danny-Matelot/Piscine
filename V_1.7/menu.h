@@ -8,8 +8,8 @@
 #include "graph.h"
 
 /// BASE SUR LE CODE DE M. FERCOQ DANS L'EXEMPLE DES CLOWNS
-/// Sert à gerer l'interface graphique avant d' acceder à la partie édition du graphe
 
+/// Sert à gerer l'interface graphique avant d' acceder à la partie édition du graphe
 class Menu
 {
     public:
