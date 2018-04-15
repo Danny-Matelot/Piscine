@@ -410,7 +410,7 @@ struct ArrowItem
         m_type(type), m_position(position), m_size(size), m_proportion(proportion) {}
 };
             
-/// edge
+/// Affiche une fleche 
 class WidgetEdge : public Widget
 {
     protected :
