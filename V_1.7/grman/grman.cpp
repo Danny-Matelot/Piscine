@@ -13,11 +13,11 @@
 #include <loadpng.h>
 #include <jpgalleg.h>
 #include <winalleg.h>
-
+//relatif Ã  tt ce qui aux fonctions d'affichage
 namespace grman
 {
 
-// Permet de compiler en mode plein écran (décommenter)
+// Permet de compiler en mode plein Ã©cran (dÃ©commenter)
 #define MODE_GRAPHIQUE GFX_AUTODETECT_WINDOWED
 //#define MODE_GRAPHIQUE GFX_AUTODETECT_FULLSCREEN
 
@@ -129,7 +129,7 @@ void set_pictures_path(std::string path_name)
 
     g_pic_path = path_name;
 }
-
+//actualise l'affichage du graphe
 void mettre_a_jour()
 {
     buf_afficher_page();
@@ -159,7 +159,7 @@ void init()
 
     srand(time(NULL));
 
-    /// Gestion des caractères accentués
+    /// Gestion des caractÃ¨res accentuÃ©s
     set_uformat(U_ASCII);
 
     allegro_init();
@@ -254,7 +254,7 @@ void rafraichir_clavier_souris()
 }
 
 
-/// Auxiliaires : compléments aux fonctions graphiques allegro
+/// Auxiliaires : complÃ©ments aux fonctions graphiques allegro
 
 void thick_line(BITMAP *bmp, int x1, int y1, int x2, int y2, int thickness, int color)
 {
