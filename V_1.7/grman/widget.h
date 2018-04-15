@@ -279,7 +279,8 @@ class WidgetButton : public Widget
 /***************************************************
                     VSLIDER
 ****************************************************/
-// slide pour ajuster
+            
+/// slide pour ajuster
 class WidgetVSlider : public Widget
 {
     protected :
