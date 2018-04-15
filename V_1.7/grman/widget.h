@@ -39,7 +39,9 @@ enum class GravityY {
 
 /// Cette classe est trop grosse, elle fait le repassage, répare la voiture, pêche au harpon...
 /// En principe il faut revoir la conception quand une classe devient aussi grosse (refactoriser)
-/// Par exemple une classe de base Widget pour l'aspect composite et une classe dérivée WidgetDecorated pour les styles
+/// Par exemple une classe de base Widget pour l'aspect composite et une classe dérivée WidgetDecorated pour les style
+
+/// Classe de base qui contient moult fonctions
 class Widget
 {
     protected :
@@ -210,7 +212,7 @@ class Widget
                     TEXT
 ****************************************************/
 
-/// Extrêmement rudimentaire : à compléter !
+/// sert à afficher un texte
 class WidgetText : public Widget
 {
     protected :
@@ -233,7 +235,8 @@ class WidgetText : public Widget
 /***************************************************
                     CHECKBOX
 ****************************************************/
-// Boite clique pour activer
+            
+/// Boite clique pour activer
 class WidgetCheckBox : public Widget
 {
     protected :
@@ -254,7 +257,8 @@ class WidgetCheckBox : public Widget
 /***************************************************
                     BUTTON
 ****************************************************/
-// boite checkbox avec reset
+            
+/// boite checkbox avec reset
 class WidgetButton : public Widget
 {
     protected :
@@ -318,6 +322,7 @@ class WidgetVSlider : public Widget
 /***************************************************
                     IMAGE
 ****************************************************/
+            
 //  Affiche une image
 class WidgetImage : public Widget
 {
@@ -349,7 +354,8 @@ class WidgetImage : public Widget
 /***************************************************
                     BOX
 ****************************************************/
-// Boite
+            
+/// Boite de base, on la bouge ou non
 class WidgetBox : public Widget
 {
     protected :
@@ -384,7 +390,8 @@ enum class ArrowItemType
     Triangle,
     Bullet,
 };
-// Fleche qui pointe entre deux sommets
+            
+/// Fleche qui pointe entre deux sommets
 struct ArrowItem
 {
     // Type de décoration (pointe de flèche, triangle, rond...
@@ -402,7 +409,8 @@ struct ArrowItem
     ArrowItem(ArrowItemType type, double position, double size=14.0, double proportion=0.5) :
         m_type(type), m_position(position), m_size(size), m_proportion(proportion) {}
 };
-//edge
+            
+/// edge
 class WidgetEdge : public Widget
 {
     protected :
