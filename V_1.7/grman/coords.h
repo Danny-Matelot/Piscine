@@ -2,7 +2,8 @@
 #define COORDS_H
 
 #include <cmath>
-// Des coordonées x y pour le graphe
+
+/// Des coordonées x y pour le graphe
 struct Coords
 {
         double x;
@@ -61,7 +62,8 @@ struct Coords
         Coords rotate_90() { return Coords(y, -x);  }
 
 };
-// Le cadre qui contient la position xy et wh
+
+/// Le cadre qui contient la position xy et wh
 struct Frame
 {
         Coords pos;
