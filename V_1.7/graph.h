@@ -229,7 +229,7 @@ class EdgeInterface
         EdgeInterface(Vertex& from, Vertex& to);
 };
 
-
+// Arete: indice to/from poids
 class Edge
 {
     // Les (methodes des) classes amies pourront accéder
@@ -278,7 +278,7 @@ class Edge
 /***************************************************
                     GRAPH
 ****************************************************/
-
+//gere tout l'aspect graphique du graphe : son cadre sa taille ect
 class GraphInterface
 {
     friend class Graph;
