@@ -15,7 +15,7 @@ void rect_around(BITMAP *bmp, int color, int thickness=1, int receding=0)
                 WIDGET BASE CLASS
 ****************************************************/
 
-// procédure d'appel de sous fonction
+/// procédure d'appel de sous fonction
 void Widget::update()
 {
     update_interact();
@@ -88,7 +88,7 @@ void Widget::update_draw( )
     destroy_frame_context();
 }
 
-// crée un cadre
+/// crée un cadre
 void Widget::create_frame_context()
 {
     /// Calculer absolute frame à partir de relative et absolute parent ( si parent, sinon page_frame )
@@ -112,7 +112,8 @@ void Widget::create_frame_context()
     // Malheureusement ceci ne marche pas ... (à creuser)
     //set_clip_rect(m_view, std::max(-x, 0), std::max(-y, 0), w-1, h-1);
 }
-// détruit un cadre
+    
+/// détruit un cadre
 void Widget::destroy_frame_context()
 {
     if (m_view)
@@ -124,13 +125,15 @@ void Widget::destroy_frame_context()
     m_view_wb = nullptr;
 
 }
-// check if mouse over trhe widget
+    
+/// check if mouse over trhe widget
 bool Widget::is_mouse_over()
 {
     return     mouse_x>=m_abs_frame.pos.x && mouse_x<=m_abs_frame.pos.x+m_abs_frame.dim.x
                &&  mouse_y>=m_abs_frame.pos.y && mouse_y<=m_abs_frame.pos.y+m_abs_frame.dim.y;
 }
-// change frame
+    
+/// change frame
 void Widget::reframe()
 {
     int pardimx = m_parent ? m_parent->get_dimx() : page_frame.dim.x;
@@ -150,7 +153,8 @@ void Widget::reframe()
     else if (m_gravity_y==GravityY::Center)
         reset_posy( (pardimy - m_frame.dim.y)/2. );
 }
-// dessine bordure du cadre 
+    
+/// dessine bordure du cadre 
 void Widget::draw_border()
 {
     rect_around(m_view_wb, get_border_color(), m_border);
@@ -173,7 +177,8 @@ void WidgetText::draw(  )
         for (int i=0, y=0; i<(int)m_message.length(); ++i, y+=text_height(m_font))
             textprintf_ex(m_view, font, 0, y, m_color, -1, "%c", m_message[i]);
 }
-// met le message dans le widget texte
+    
+/// met le message dans le widget texte
 void WidgetText::set_message(std::string message)
 {
     m_message = message;
@@ -189,7 +194,8 @@ void WidgetText::set_message(std::string message)
 /***************************************************
                     CHECKBOX
 ****************************************************/
-//dessine la widget
+    
+///dessine la widget
 void WidgetCheckBox::draw()
 {
     if (m_value)
@@ -204,7 +210,8 @@ void WidgetCheckBox::draw()
     }
 
 }
-//change la valeur si clique change valeur de la widget
+    
+///change la valeur si clique change valeur de la widget
 void WidgetCheckBox::interact_focus()
 {
     if ( mouse_click )
@@ -217,7 +224,8 @@ void WidgetCheckBox::interact_focus()
 /***************************************************
                     BUTTON
 ****************************************************/
-// si click then the widget is activated
+    
+/// si click then the widget is activated
 void WidgetButton::interact_focus()
 {
     if ( mouse_click )
@@ -229,7 +237,8 @@ void WidgetButton::interact_focus()
 /***************************************************
                     VSLIDER
 ****************************************************/
-//dessine le slider
+    
+/// dessine le slider
 void WidgetVSlider::draw()
 {
     int hhandle = get_hhandle();
@@ -243,7 +252,8 @@ void WidgetVSlider::draw()
 
     thick_line(m_view, 0, ys, m_view->w-1, ys, hhandle, m_handle_color );
 }
-// interragir avec le widget et changer val
+    
+/// interragir avec le widget et changer val
 void WidgetVSlider::interact_focus()
 {
     if ( mouse_b )
@@ -254,7 +264,8 @@ void WidgetVSlider::interact_focus()
         limit_to_range();
     }
 }
-// augmenter ou baisser la valeur
+    
+/// augmenter ou baisser la valeur
 void WidgetVSlider::interact_over()
 {
     if ( key[KEY_UP] )
@@ -275,7 +286,8 @@ void WidgetVSlider::interact_over()
 /***************************************************
                     IMAGE
 ****************************************************/
-//change cadre
+    
+/// change cadre
 void WidgetImage::reframe()
 {
     if (m_pic_name=="")
@@ -287,7 +299,8 @@ void WidgetImage::reframe()
 
     set_dim( pic->w/get_picture_nb(m_pic_name), pic->h );
 }
-//dessine le widget
+    
+///dessine le widget
 void WidgetImage::draw()
 {
     if (m_animate)
@@ -307,7 +320,8 @@ void WidgetImage::draw()
 /***************************************************
                     BOX
 ****************************************************/
-//interagir w/ box 
+    
+///interagir w/ box 
 void WidgetBox::interact_focus()
 {
     if (mouse_click)
@@ -346,7 +360,8 @@ void WidgetBox::interact_focus()
 /***************************************************
                     EDGE
 ****************************************************/
-//dessine
+    
+///dessine
 void WidgetEdge::draw()
 {
     if ( !(m_attach[0] && m_attach[1] ) )
